@@ -1,11 +1,9 @@
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class Problem12 {
-//    implement .contains() for lists
+    //    implement .contains() for lists
     public static <T> boolean contains(List<T> list, T item) {
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).equals(item)) {
@@ -14,7 +12,8 @@ public class Problem12 {
         }
         return false;
     }
-//    implement .contains() for Collection (it is a type, a utility class) list, vector, set
+
+    //    implement .contains() for Collection (it is a type, a utility class) list, vector, set
 //    (it is different from collections which is also a type)
 //    using enhanced for loop is the right way, but try it another way as well
     public static <T> boolean contains4(Collection<T> collection, T item) {
@@ -42,7 +41,7 @@ public class Problem12 {
 
     public static <T> boolean contains(Collection<T> collection, T item) {
         Iterator<T> iterator = collection.iterator();
-        while(iterator.hasNext()) {
+        while (iterator.hasNext()) {
             T i = iterator.next();
             if (i.equals(item)) return true;
         }
@@ -58,4 +57,49 @@ public class Problem12 {
 //            s;
 //        }
     }
+
+//        Given a collection and a second collection, check
+//        if all members of the second collection are included in the first collection
+//    public static <T> boolean containsCollection(Collection<T> collection, Collection<T> collection2) {
+//        Iterator<T> iterator = collection.iterator();
+//        Iterator<T> iterator2 = collection2.iterator();
+//        boolean containsCollection = false;
+//        while (iterator2.hasNext()) {
+//            T i = iterator2.next();
+//            while (iterator.hasNext()) {
+//                T j = iterator.next();
+//                if (i.equals(j)) {
+//                    containsCollection = true;
+//                    break;
+//                }
+//                if (!iterator.hasNext()) {
+//                    containsCollection = false;
+//                }
+//            }
+//            if (!containsCollection) break;
+//        }
+//        return containsCollection;
+//    }
+
+    public static <T> boolean containsCollection(Collection<T> collection, Collection<T> collection2) {
+        Iterator<T> iterator2 = collection2.iterator();
+        int count = 0;
+        int size = 0;
+        if(!collection2.isEmpty()) {
+            while (iterator2.hasNext()) {
+                Iterator<T> iterator = collection.iterator();
+                size++;
+                T i = iterator2.next();
+                while (iterator.hasNext()) {
+                    T j = iterator.next();
+                    if (i.equals(j)) {
+                        count++;
+                    }
+                }
+            }
+            return count == size;
+        }
+        return false;
+    }
+
 }

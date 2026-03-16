@@ -31,4 +31,12 @@ class Problem12Test {
         assertTrue(Problem12.contains(Set.of("abcd"), "ab" + "cd"));
 
     }
+
+    @Test
+    void containsCollection() {
+        assertTrue(Problem12.containsCollection(Set.of(1, 2, 3, 4), Set.of(2, 4)));
+        assertTrue(Problem12.containsCollection(Set.of("a", "sahar", "am", "here"), Set.of("here")));
+        assertFalse(Problem12.containsCollection(Set.of(), Set.of()));
+        assertFalse(Problem12.containsCollection(Set.of("a"), Set.of()));
+    }
 }
