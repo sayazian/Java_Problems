@@ -68,7 +68,7 @@ public class Problem03 {
         return output;
     }
 
-// Take a list of strings and concatenate them with a space in between
+    // Take a list of strings and concatenate them with a space in between
     public static String joinWordsV1(List<String> strings) {
         StringBuilder output = new StringBuilder();
         for (int i = 0; i < strings.size(); i++) {
@@ -88,8 +88,21 @@ public class Problem03 {
         return strings.stream().reduce((s, s2) -> s + " " + s2).orElse("");
     }
 
-    public static String joinWords(List<String> strings) {
+    public static String joinWordsV4(List<String> strings) {
         return strings.stream().collect(Collectors.joining(" "));
     }
+
+    public static String joinWords(List<String> strings) {
+        StringBuilder output = new StringBuilder();
+        if (!strings.isEmpty()) {
+            output.append(strings.get(0));
+        }
+        for (int i = 1; i < strings.size(); i++) {
+            output.append(" ");
+            output.append(strings.get(i));
+        }
+        return output.toString();
+    }
+
 }
 

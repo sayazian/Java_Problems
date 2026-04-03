@@ -1,6 +1,11 @@
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Problem12 {
     //    implement .contains() for lists
@@ -46,60 +51,18 @@ public class Problem12 {
             if (i.equals(item)) return true;
         }
         return false;
-
-//        for (T i : c) {
-//            s;
-//        }
-//
-//        Iterator<T> iter = c.iterator();
-//        while (iter.hasNext()) {
-//            T i = iter.next();
-//            s;
-//        }
     }
 
-//        Given a collection and a second collection, check
-//        if all members of the second collection are included in the first collection
-//    public static <T> boolean containsCollection(Collection<T> collection, Collection<T> collection2) {
-//        Iterator<T> iterator = collection.iterator();
-//        Iterator<T> iterator2 = collection2.iterator();
-//        boolean containsCollection = false;
-//        while (iterator2.hasNext()) {
-//            T i = iterator2.next();
-//            while (iterator.hasNext()) {
-//                T j = iterator.next();
-//                if (i.equals(j)) {
-//                    containsCollection = true;
-//                    break;
-//                }
-//                if (!iterator.hasNext()) {
-//                    containsCollection = false;
-//                }
-//            }
-//            if (!containsCollection) break;
-//        }
-//        return containsCollection;
-//    }
-
-    public static <T> boolean containsCollection(Collection<T> collection, Collection<T> collection2) {
-        Iterator<T> iterator2 = collection2.iterator();
-        int count = 0;
-        int size = 0;
-        if(!collection2.isEmpty()) {
-            while (iterator2.hasNext()) {
-                Iterator<T> iterator = collection.iterator();
-                size++;
-                T i = iterator2.next();
-                while (iterator.hasNext()) {
-                    T j = iterator.next();
-                    if (i.equals(j)) {
-                        count++;
-                    }
-                }
+    public static <T> boolean containsAllV1(Collection<T> collection, Collection<T> items) {
+        for (T item : items) {
+            if (!contains2(collection, item)) {
+                return false;
             }
-            return count == size;
         }
-        return false;
+        return true;
     }
-
+    public static <T> boolean containsAll(Collection<T> collection, Collection<T> items) {
+        return new HashSet<>(collection).containsAll(items);
+    }
 }
+

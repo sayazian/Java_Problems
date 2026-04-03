@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -33,10 +32,15 @@ class Problem12Test {
     }
 
     @Test
-    void containsCollection() {
-        assertTrue(Problem12.containsCollection(Set.of(1, 2, 3, 4), Set.of(2, 4)));
-        assertTrue(Problem12.containsCollection(Set.of("a", "sahar", "am", "here"), Set.of("here")));
-        assertFalse(Problem12.containsCollection(Set.of(), Set.of()));
-        assertFalse(Problem12.containsCollection(Set.of("a"), Set.of()));
+    void containsAll() {
+        assertTrue(Problem12.containsAll(Set.of(1, 2, 3, 4), Set.of(2, 4)));
+        assertTrue(Problem12.containsAll(Set.of(1, 2, 3, 4), Set.of(1, 2, 3, 4)));
+        assertFalse(Problem12.containsAll(Set.of(1, 2, 3, 4), Set.of(2, 14)));
+        assertTrue(Problem12.containsAll(Set.of(1, 2, 3, 4), Set.of(4, 2)));
+        assertTrue(Problem12.containsAll(Set.of("a", "Sahar", "am", "here"), Set.of("here")));
+        assertTrue(Problem12.containsAll(Set.of(), Set.of()));
+        assertFalse(Problem12.containsAll(Set.of(), Set.of("a")));
+        assertTrue(Problem12.containsAll(Set.of("a"), Set.of()));
+        assertFalse(Problem12.containsAll(Set.of(1, 2, 3, 4), Set.of("2", "4")));
     }
 }
