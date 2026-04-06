@@ -8,24 +8,24 @@ class BinarySearchTreeTest {
 
     @Test
     void findsInsertedValue() {
-//        insert a value into the tree. The insert call should return true
-//        call find for the same value. the call should return true.
-        int value = 1;
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-        assertTrue(tree.insert(value));
-        assertTrue(tree.find(value));
+
+        assertTrue(tree.insert(0));
+        assertTrue(tree.find(0));
     }
 
     @Test
     void insertDuplicate() {
-//        First time return true, the second time return false
-        int value = 1;
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-        assertTrue(tree.insert(value));
-        assertFalse(tree.insert(value));
+
+        assertTrue(tree.insert(0));
+        assertFalse(tree.insert(0));
     }
 
     @Test
-    void delete() {
+    void cannotFindWithNoInserts() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+
+        assertFalse(tree.find(0));
     }
 }

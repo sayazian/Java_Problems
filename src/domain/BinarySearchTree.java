@@ -13,7 +13,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     public boolean find(T value) {
-        return true;
+        return root != null;
     }
 
     public boolean delete(T value) {
