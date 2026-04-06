@@ -6,40 +6,30 @@ public class BinarySearchTree<T extends Comparable<T>> {
     public boolean insert(T value) {
         if (root == null) {
             root = new TreeNode<>(value);
-        } else if (root.value.compareTo(value) > 0) {
-            return insertLeft(root, value);
-        } else if (root.value.compareTo(value) < 0) {
-            return insertRight(root, value);
         } else {
-            return false;
+            return position(root, value);
         }
         return true;
     }
 
-    private boolean insertLeft(TreeNode<T> node, T value) {
-        if (node.left == null) {
-            node.left = new TreeNode<>(value);
-        } else if (node.left.value.compareTo(value) > 0) {
-            return insertLeft(node.left, value);
-        } else if (node.left.value.compareTo(value) < 0) {
-            return insertRight(node.left, value);
+    private boolean position(TreeNode<T> node, T value) {
+        if (node.value.compareTo(value) > 0) {
+            if (node.left == null) {
+                node.left = new TreeNode<>(value);
+            } else {
+                return position(node.left, value);
+            }
+            return true;
+        } else if (node.value.compareTo(value) < 0) {
+            if (node.right == null) {
+                node.right = new TreeNode<>(value);
+            } else {
+                return position(node.right, value);
+            }
+            return true;
         } else {
             return false;
         }
-        return true;
-    }
-
-    private boolean insertRight(TreeNode<T> node, T value) {
-        if (node.right == null) {
-            node.right = new TreeNode<>(value);
-        } else if (node.right.value.compareTo(value) > 0) {
-            return insertLeft(node.right, value);
-        } else if (node.right.value.compareTo(value) < 0) {
-            return insertRight(node.right, value);
-        } else {
-            return false;
-        }
-        return true;
     }
 
     private boolean checkNodeValue(TreeNode<T> node, T value) {
