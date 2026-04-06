@@ -28,4 +28,13 @@ class BinarySearchTreeTest {
 
         assertFalse(tree.find(0));
     }
+
+    @Test
+    void insertAndFindValue() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+
+        assertTrue(tree.insert(0));
+        assertTrue(tree.find(0));
+        assertFalse(tree.find(1));
+    }
 }

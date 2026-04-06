@@ -5,7 +5,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
     public boolean insert(T value) {
         if (root == null) {
-            root = new TreeNode<>();
+            root = new TreeNode<>(value);
             return true;
         } else {
             return false;
@@ -13,7 +13,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     public boolean find(T value) {
-        return root != null;
+        if (root == null) {
+            return false;
+        } else return root.value.equals(value);
     }
 
     public boolean delete(T value) {
@@ -24,6 +26,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
         U value;
         TreeNode<U> left;
         TreeNode<U> right;
+
+        public TreeNode(U value) {
+            this.value = value;
+        }
 
         public U getValue() {
             return value;
