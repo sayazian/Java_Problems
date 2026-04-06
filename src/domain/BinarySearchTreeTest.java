@@ -37,4 +37,16 @@ class BinarySearchTreeTest {
         assertTrue(tree.find(0));
         assertFalse(tree.find(1));
     }
+
+    @Test
+    void insertTwoItems() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+
+        assertTrue(tree.insert(0));
+        assertTrue(tree.insert(1));
+        assertTrue(tree.find(0));
+        assertTrue(tree.find(1));
+        assertFalse(tree.find(2));
+
+    }
 }
