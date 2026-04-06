@@ -6,44 +6,56 @@ public class BinarySearchTree<T extends Comparable<T>> {
     public boolean insert(T value) {
         if (root == null) {
             root = new TreeNode<>(value);
-            return true;
-        } else if (root.value.equals(value)) {
-            return false;
         } else if (root.value.compareTo(value) > 0) {
-            if (root.left == null) {
-                root.left = new TreeNode<>(value);
-                return true;
-            } else {
-                return false;
-            }
+            return insertLeft(root, value);
+        } else if (root.value.compareTo(value) < 0) {
+            return insertRight(root, value);
         } else {
-            if (root.right == null) {
-                root.right = new TreeNode<>(value);
-                return true;
-            } else {
-                return false;
-            }
+            return false;
+        }
+        return true;
+    }
+
+    private boolean insertLeft(TreeNode<T> node, T value) {
+        if (node.left == null) {
+            node.left = new TreeNode<>(value);
+        } else if (node.left.value.compareTo(value) > 0) {
+            return insertLeft(node.left, value);
+        } else if (node.left.value.compareTo(value) < 0) {
+            return insertRight(node.left, value);
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean insertRight(TreeNode<T> node, T value) {
+        if (node.right == null) {
+            node.right = new TreeNode<>(value);
+        } else if (node.right.value.compareTo(value) > 0) {
+            return insertLeft(node.right, value);
+        } else if (node.right.value.compareTo(value) < 0) {
+            return insertRight(node.right, value);
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkNodeValue(TreeNode<T> node, T value) {
+        if (node == null) {
+            return false;
+        } else if (node.value.compareTo(value) > 0) {
+            return checkNodeValue(node.left, value);
+        } else if (node.value.compareTo(value) < 0) {
+            return checkNodeValue(node.right, value);
+        } else {
+            return true;
         }
     }
 
     public boolean find(T value) {
-        if (root == null) {
-            return false;
-        } else if (root.value.equals(value)) {
-            return true;
-        } else if (root.value.compareTo(value) > 0) {
-            if (root.left == null) {
-                return false;
-            } else {
-                return root.left.value.equals(value);
-            }
-        } else {
-            if (root.right == null) {
-                return false;
-            } else {
-                return root.right.value.equals(value);
-            }
-        }
+        return checkNodeValue(root, value);
     }
 
     public boolean delete(T value) {
