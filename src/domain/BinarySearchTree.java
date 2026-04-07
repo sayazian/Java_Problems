@@ -49,7 +49,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     public boolean delete(T value) {
-        return true;
+        return false;
     }
 
     private static class TreeNode<U extends Comparable<U>> {

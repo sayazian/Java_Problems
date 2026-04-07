@@ -50,7 +50,7 @@ class BinarySearchTreeTest {
     }
 
     @Test
-    void name() {
+    void insertFind() {
 //        insert 8 4 12 2 6 10 14
 //        assert on the presence of every number from 1-15
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
@@ -62,7 +62,6 @@ class BinarySearchTreeTest {
         assertTrue(tree.insert(6));
         assertTrue(tree.insert(10));
         assertTrue(tree.insert(14));
-
         assertTrue(tree.find(8));
         assertTrue(tree.find(4));
         assertTrue(tree.find(12));
@@ -70,7 +69,6 @@ class BinarySearchTreeTest {
         assertTrue(tree.find(6));
         assertTrue(tree.find(10));
         assertTrue(tree.find(14));
-
         assertFalse(tree.find(1));
         assertFalse(tree.find(3));
         assertFalse(tree.find(5));
@@ -79,6 +77,17 @@ class BinarySearchTreeTest {
         assertFalse(tree.find(11));
         assertFalse(tree.find(13));
         assertFalse(tree.find(15));
+    }
+
+    @Test
+    void deletingFromEmptyTreeReturnsFalse() {
+//        Create a tree. Delete something. It should return false.
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+        assertFalse(tree.delete(0));
+    }
+
+    @Test
+    void deletingExistingReturnsTrueNonexistingReturnsFalse() {
 
     }
 }
