@@ -35,7 +35,13 @@ public class BinarySearchTree<T extends Comparable<T>> {
     private boolean checkNodeValue(TreeNode<T> node, T value) {
         if (node == null) {
             return false;
-        } else return checkDeleteDown(node, value, checkNodeValue(node.left, value), checkNodeValue(node.right, value));
+        } else if (node.value.compareTo(value) > 0) {
+            return checkNodeValue(node.left, value);
+        } else if (node.value.compareTo(value) < 0) {
+            return checkNodeValue(node.right, value);
+        } else {
+            return true;
+        }
     }
 
     public boolean find(T value) {
@@ -43,21 +49,26 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     public boolean delete(T value) {
+//        if (find(value)) {
+//            root = null;
+//            return true;
+//        }
+//        return false;
         if (root == null) {
             return false;
         } else if (root.value.equals(value)) {
             root = null;
             return true;
         } else {
-            return checkDeleteDown(root, value, checkDeleteLeft(root, value), checkDeleteRight(root, value));
+            return checkDeleteDown(root, value);
         }
     }
 
-    private boolean checkDeleteDown(TreeNode<T> root, T value, boolean root1, boolean root2) {
-        if (root.value.compareTo(value) > 0) {
-            return root1;
-        } else if (root.value.compareTo(value) < 0) {
-            return root2;
+    private boolean checkDeleteDown(TreeNode<T> node, T value) {
+        if (node.value.compareTo(value) > 0) {
+            return checkDeleteLeft(node, value);
+        } else if (node.value.compareTo(value) < 0) {
+            return checkDeleteRight(node, value);
         } else {
             return true;
         }
@@ -71,7 +82,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
             return true;
         } else {
             TreeNode<T> right = node.right;
-            return checkDeleteDown(right, value, checkDeleteLeft(right, value), checkDeleteRight(right, value));
+            return checkDeleteDown(right, value);
         }
     }
 
@@ -83,7 +94,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
             return true;
         } else {
             TreeNode<T> left = node.left;
-            return checkDeleteDown(left, value, checkDeleteLeft(left, value), checkDeleteRight(left, value));
+            return checkDeleteDown(left, value);
         }
     }
 
