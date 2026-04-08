@@ -1,32 +1,48 @@
 package domain;
 
+import java.util.NoSuchElementException;
+
 public class LinkedStack<T> implements Stack<T> {
 
-    Node[] nodes;
+    Node<T> head;
 
     @Override
     public boolean isEmpty() {
-
-        return nodes.length == 0;
+        return head == null;
     }
 
     @Override
     public void push(T value) {
-
+        if (head != null) {
+            Node<T> nextNode = new Node<>(head.value);
+            head.value = value;
+            head.next = nextNode;
+        } else {
+            head = new Node<>(value);;
+        }
     }
 
     @Override
-    public T peak() {
-        return null;
+    public T peek() {
+        if (head == null) {
+            throw new NoSuchElementException("The stack is empty!!");
+        }
+        return head.value;
     }
 
     @Override
     public T pop() {
-        return null;
+        T value = peek();
+        head = head.next;
+        return value;
     }
-    private class Node {
-        T value;
-        Node next;
+
+    private static class Node<U> {
+        U value;
+        Node<U> next;
+        public Node (U value) {
+            this.value = value;
+        }
     }
 
 }

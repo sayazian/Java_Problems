@@ -13,7 +13,7 @@ public class ArrayStack<T> implements Stack<T> {
     }
 
     @Override
-    public T peak() {
+    public T peek() {
         return null;
     }
 
