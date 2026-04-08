@@ -49,6 +49,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     public boolean delete(T value) {
+        if (find(value)) {
+            root = null;
+            return true;
+        }
         return false;
     }
 
