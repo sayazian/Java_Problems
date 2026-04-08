@@ -109,28 +109,28 @@ class BinarySearchTreeTest {
         assertFalse(tree.find(5));
     }
 
-//    @Test
-//    void deletingExistingReturnsTrueNonexistingReturnsFalseV3() {
-//        BinarySearchTree<Integer> tree = createEvenNumberTree();
-//        tree.delete(10);
-//        assertTrue(tree.find(8));
-//        assertTrue(tree.find(4));
-//        assertTrue(tree.find(12));
-//        assertTrue(tree.find(2));
-//        assertTrue(tree.find(6));
-//        assertFalse(tree.find(10));
-//        assertTrue(tree.find(14));
-//    }
-//
-//    void deletingExistingReturnsTrueNonexistingReturnsFalseV4() {
-//        BinarySearchTree<Integer> tree = createEvenNumberTree();
-//        tree.delete(14);
-//        assertTrue(tree.find(8));
-//        assertTrue(tree.find(4));
-//        assertTrue(tree.find(12));
-//        assertTrue(tree.find(2));
-//        assertTrue(tree.find(6));
-//        assertTrue(tree.find(10));
-//        assertFalse(tree.find(14));
-//    }
+    @Test
+    void deletingExistingReturnsTrueNonexistingReturnsFalseV3() {
+        BinarySearchTree<Integer> tree = createEvenNumberTree();
+        tree.delete(10);
+        assertTrue(tree.find(8));
+        assertTrue(tree.find(4));
+        assertTrue(tree.find(12));
+        assertTrue(tree.find(2));
+        assertTrue(tree.find(6));
+        assertFalse(tree.find(10));
+        assertTrue(tree.find(14));
+    }
+
+    void deletingExistingReturnsTrueNonexistingReturnsFalseV4() {
+        BinarySearchTree<Integer> tree = createEvenNumberTree();
+        tree.delete(14);
+        assertTrue(tree.find(8));
+        assertTrue(tree.find(4));
+        assertTrue(tree.find(12));
+        assertTrue(tree.find(2));
+        assertTrue(tree.find(6));
+        assertTrue(tree.find(10));
+        assertFalse(tree.find(14));
+    }
 }
