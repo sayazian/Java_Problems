@@ -14,9 +14,10 @@ public class LinkedStack<T> implements Stack<T> {
     @Override
     public void push(T value) {
         if (head != null) {
-            Node<T> nextNode = new Node<>(head.value);
+            Node<T> oldNode = new Node<>(head.value);
+            oldNode.next = head.next;
             head.value = value;
-            head.next = nextNode;
+            head.next = oldNode;
         } else {
             head = new Node<>(value);;
         }
@@ -37,7 +38,7 @@ public class LinkedStack<T> implements Stack<T> {
         return value;
     }
 
-    private static class Node<U> {
+    protected static class Node<U> {
         U value;
         Node<U> next;
         public Node (U value) {

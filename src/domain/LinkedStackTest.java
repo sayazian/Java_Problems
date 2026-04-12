@@ -42,4 +42,15 @@ class LinkedStackTest {
         assertEquals(1, linkedStack.pop());
         assertThrows(NoSuchElementException.class, linkedStack::pop);
     }
+
+    @Test
+    void pushTest() {
+        LinkedStack<Integer> linkedStack = new LinkedStack<>();
+        for (int i = 0; i < 100; i++) {
+            linkedStack.push(i + 1);
+        }
+        for (int i = 100; i > 0; i--) {
+            assertEquals(i, linkedStack.pop(), "popped value should be equal to " + i);
+        }
+    }
 }
