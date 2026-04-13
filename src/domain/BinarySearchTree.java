@@ -93,7 +93,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
     }
 
-    private static class TreeNode<U extends Comparable<U>> {
+    public static class TreeNode<U extends Comparable<U>> {
         U value;
         TreeNode<U> left;
         TreeNode<U> right;

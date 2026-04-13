@@ -25,7 +25,7 @@ class ArrayStackTest {
     }
 
     @Test
-    void peek() {
+    void peekTest() {
         ArrayStack<Integer> arrayStack = new ArrayStack<>();
         assertThrows(NoSuchElementException.class, arrayStack::peek);
         arrayStack.push(1);
@@ -36,7 +36,7 @@ class ArrayStackTest {
     }
 
     @Test
-    void pop() {
+    void popTest() {
         ArrayStack<Integer> arrayStack = new ArrayStack<>();
         assertThrows(NoSuchElementException.class, arrayStack::pop);
         arrayStack.push(1);
@@ -57,4 +57,26 @@ class ArrayStackTest {
         }
     }
 
+    @Test
+    void testIsEmpty() {
+        ArrayStack<Integer> arrayStack = new ArrayStack<>();
+        assertTrue(arrayStack.isEmpty());
+        arrayStack.push(1);
+        assertFalse(arrayStack.isEmpty());
+        arrayStack.pop();
+        assertTrue(arrayStack.isEmpty());
+        arrayStack.push(null);
+        assertFalse(arrayStack.isEmpty());
+        arrayStack.pop();
+        assertTrue(arrayStack.isEmpty());
+    }
+
+    @Test
+    void testGarbageCleanUp() {
+        ArrayStack<Integer> arrayStack = new ArrayStack<>();
+        for (int i = 0; i < 10; i++) {
+            arrayStack.push(i);
+        }
+        arrayStack.pop();
+    }
 }

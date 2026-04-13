@@ -1,10 +1,10 @@
 package domain;
 
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public class ArrayStack<T> implements Stack<T> {
     T[] array;
-    T head;
     int size;
 
     public ArrayStack() {
@@ -14,15 +14,7 @@ public class ArrayStack<T> implements Stack<T> {
 
     @Override
     public boolean isEmpty() {
-        boolean isEmpty = true;
-        if (array == null) {
-            return true;
-        } else {
-            for (T t : array) {
-                isEmpty = isEmpty && t == null;
-            }
-        }
-        return isEmpty;
+        return size == 0;
     }
 
     @Override
@@ -33,33 +25,31 @@ public class ArrayStack<T> implements Stack<T> {
             doubleTheArrayLength();
             array[size] = value;
         }
-        head = array[size];
         size++;
     }
 
     private void doubleTheArrayLength() {
-        T[] tempArray = (T[]) new Object[2 * array.length];
-        for (int i = 0; i < array.length; i++) {
-            tempArray[i] = array[i];
-        }
-        array = tempArray;
-        head  = array[size];
+        array = Arrays.copyOf(array, 2 * array.length);
     }
 
     @Override
     public T peek() {
+        throwExceptionIfEmpty();
+        return array[size - 1];
+    }
+
+    private void throwExceptionIfEmpty() {
         if (size == 0) {
             throw new NoSuchElementException("The stack is empty!!");
         }
-        return head;
     }
 
     @Override
     public T pop() {
-        if (size == 0) {
-            throw new NoSuchElementException("The stack is empty!!");
-        }
+        throwExceptionIfEmpty();
         size--;
-        return array[size];
+        T temp = array[size];
+        array[size] = null;
+        return temp;
     }
 }
