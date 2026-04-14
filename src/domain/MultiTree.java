@@ -7,29 +7,41 @@ public class MultiTree<T> {
 
     TreeNode<T> root;
 
-   public static List<String> preOrderTraversal() {
-       return new ArrayList<>();
-//       where root is a, and children are b c d, then traversal should return a list abcd
-   }
+    public List<String> preOrderTraversal() {
+        List<String> list = new ArrayList<>();
+        list.addAll(root.preOrderTraversal());
+        return list;
+    }
 
-   public static List<String> postOrderTraversal() {
-       return new ArrayList<>();
-//       where root is a, and children are b c d, then post-traversal should return a list bcda (a: node.visit)
-   }
+    public List<String> postOrderTraversal() {
+        return new ArrayList<>();
+    }
 
-    private static class TreeNode<U> {
+    static class TreeNode<U> {
         U value;
         String name;
-        List<U> children;
+        List<TreeNode<U>> children;
 
-        public TreeNode(U value) {
+        public TreeNode(U value, String name, List<TreeNode<U>> children) {
             this.value = value;
+            this.name = name;
+            this.children = children;
         }
 
         public String visit() {
             return name + ": " + value;
         }
 
+        public List<String> preOrderTraversal() {
+            List<String> output = new ArrayList<>();
+            output.add(this.visit());
+            if (children != null) {
+                for (TreeNode<U> treeNode: children) {
+                    output.addAll(treeNode.preOrderTraversal());
+                }
+            }
+            return output;
+        }
         public U getValue() {
             return value;
         }
