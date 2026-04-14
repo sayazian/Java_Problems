@@ -3,8 +3,10 @@ package domain;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import static java.util.Collections.emptyList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MultiTreeTest {
@@ -37,6 +39,30 @@ class MultiTreeTest {
 
 @Test
     void preOrderTraversalTestV3() {
+    MultiTree<String> multiTree = getStringMultiTree();
+    assertEquals(
+                List.of("nodeA: a", "nodeB: b", "nodeD: d" , "nodeH: h" , "nodeI: i" ,
+                        "nodeE: e", "nodeJ: j", "nodeK: k",
+                        "nodeC: c", "nodeF: f", "nodeL: l" , "nodeM: m" ,
+                        "nodeG: g", "nodeN: n" , "nodeO: o" ),
+                multiTree.preOrderTraversal());
+    }
+
+    @Test
+    void postOrderTraversalTest() {
+        MultiTree<String> multiTree = getStringMultiTree();
+        assertEquals(
+                List.of("nodeH: h", "nodeI: i", "nodeD: d",
+                        "nodeJ: j", "nodeK: k", "nodeE: e",
+                        "nodeB: b",
+                        "nodeL: l" , "nodeM: m", "nodeF: f",
+                        "nodeN: n" , "nodeO: o", "nodeG: g",
+                        "nodeC: c", "nodeA: a"),
+                multiTree.postOrderTraversal());
+    }
+
+
+    private static MultiTree<String> getStringMultiTree() {
         MultiTree<String> multiTree = new MultiTree<>();
         MultiTree.TreeNode<String> nodeB = new MultiTree.TreeNode<>("b", "nodeB", null);
         MultiTree.TreeNode<String> nodeC = new MultiTree.TreeNode<>("c", "nodeC", null);
@@ -59,16 +85,8 @@ class MultiTreeTest {
         nodeF.children = List.of(nodeL, nodeM);
         nodeG.children = List.of(nodeN, nodeO);
 
-        multiTree.root = new MultiTree.TreeNode<String>("a", "nodeA", List.of(nodeB, nodeC));
-        assertEquals(
-                List.of("nodeA: a", "nodeB: b", "nodeD: d" , "nodeH: h" , "nodeI: i" ,
-                        "nodeE: e", "nodeJ: j", "nodeK: k",
-                        "nodeC: c", "nodeF: f", "nodeL: l" , "nodeM: m" ,
-                        "nodeG: g", "nodeN: n" , "nodeO: o" ),
-                multiTree.preOrderTraversal());
+        multiTree.root = new MultiTree.TreeNode<>("a", "nodeA", List.of(nodeB, nodeC));
+        return multiTree;
     }
 
-    @Test
-    void postOrderTraversalTest() {
-    }
 }

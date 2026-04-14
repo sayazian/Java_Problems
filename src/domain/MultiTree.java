@@ -8,13 +8,11 @@ public class MultiTree<T> {
     TreeNode<T> root;
 
     public List<String> preOrderTraversal() {
-        List<String> list = new ArrayList<>();
-        list.addAll(root.preOrderTraversal());
-        return list;
+        return new ArrayList<>(root.preOrderTraversal());
     }
 
     public List<String> postOrderTraversal() {
-        return new ArrayList<>();
+        return new ArrayList<>(root.postOrderTraversal());
     }
 
     static class TreeNode<U> {
@@ -42,6 +40,18 @@ public class MultiTree<T> {
             }
             return output;
         }
+
+        public List<String> postOrderTraversal() {
+            List<String> output = new ArrayList<>();
+            if (children != null) {
+                for (TreeNode<U> treeNode: children) {
+                    output.addAll(treeNode.postOrderTraversal());
+                }
+            }
+            output.add(this.visit());
+            return output;
+        }
+
         public U getValue() {
             return value;
         }
