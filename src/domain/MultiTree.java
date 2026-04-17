@@ -15,6 +15,11 @@ public class MultiTree<T> {
         return new ArrayList<>(root.postOrderTraversal());
     }
 
+    public List<String> preOrderTraversalStack() {
+
+        return new ArrayList<>(root.preOrderTraversal());
+    }
+
     static class TreeNode<U> {
         U value;
         String name;

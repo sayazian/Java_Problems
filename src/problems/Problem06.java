@@ -7,7 +7,9 @@ public class Problem06 {
         if (n <= 1) {
             return 1;
         } else {
-            return n * factorialRecursive(n - 1);
+            int nMinusOne = n - 1;
+            int recursiveCall = factorialRecursive(nMinusOne);
+            return n * recursiveCall;
         }
     }
 
