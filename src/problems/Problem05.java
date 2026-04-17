@@ -1,7 +1,7 @@
 package problems;
 
 public class Problem05 {
-//Implement Fibonacci series, given n, return f(n)
+//Implement FibonacciElement series, given n, return f(n)
 
     public static int fibonacciV1(int n) {
         int output = 0;
