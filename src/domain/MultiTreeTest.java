@@ -13,25 +13,14 @@ class MultiTreeTest {
 
     @Test
     void preOrderTraversalTest() {
-        MultiTree<String> multiTree = new MultiTree<>();
-        MultiTree.TreeNode<String> nodeB = new MultiTree.TreeNode<>("b", "nodeB", null);
-        MultiTree.TreeNode<String> nodeC = new MultiTree.TreeNode<>("c", "nodeC", null);
-        multiTree.root = new MultiTree.TreeNode<String>("a", "nodeA", List.of(nodeB, nodeC));
+        MultiTree<String> multiTree = getMultiTreeL1();
         assertEquals(List.of("nodeA: a", "nodeB: b", "nodeC: c"), multiTree.preOrderTraversal());
     }
 
+
     @Test
     void preOrderTraversalTestV2() {
-        MultiTree<String> multiTree = new MultiTree<>();
-        MultiTree.TreeNode<String> nodeB = new MultiTree.TreeNode<>("b", "nodeB", null);
-        MultiTree.TreeNode<String> nodeC = new MultiTree.TreeNode<>("c", "nodeC", null);
-        MultiTree.TreeNode<String> nodeD = new MultiTree.TreeNode<>("d", "nodeD", null);
-        MultiTree.TreeNode<String> nodeE = new MultiTree.TreeNode<>("e", "nodeE", null);
-        MultiTree.TreeNode<String> nodeF = new MultiTree.TreeNode<>("f", "nodeF", null);
-        MultiTree.TreeNode<String> nodeG = new MultiTree.TreeNode<>("g", "nodeG", null);
-        nodeB.children = List.of(nodeD, nodeE);
-        nodeC.children = List.of(nodeF, nodeG);
-        multiTree.root = new MultiTree.TreeNode<String>("a", "nodeA", List.of(nodeB, nodeC));
+        MultiTree<String> multiTree = getMultiTreeL2();
         assertEquals(
                 List.of("nodeA: a", "nodeB: b", "nodeD: d", "nodeE: e", "nodeC: c", "nodeF: f", "nodeG: g"),
                 multiTree.preOrderTraversal());
@@ -73,6 +62,31 @@ class MultiTreeTest {
     }
 
     @Test
+    void preOrderTraversalStackTest() {
+        MultiTree<String> multiTree = getStringMultiTree2();
+        assertEquals(
+                List.of("nodeS: s", "nodeA: a", "nodeH: h", "nodeZ: z",
+                        "nodeI: i", "nodeR: r", "nodeN: n", "nodeM: m", "nodeV: v",
+                        "nodeY: y", "nodeJ: j",
+                        "nodeL: l", "nodeF: f", "nodeK: k", "nodeT: t"),
+                multiTree.preOrderTraversalStack());
+    }
+
+    @Test
+    void preOrderTraversalStackTestV2() {
+        MultiTree<String> multiTree = getMultiTreeL1();
+        assertEquals(List.of("nodeA: a", "nodeB: b", "nodeC: c"), multiTree.preOrderTraversalStack());
+    }
+
+    @Test
+    void preOrderTraversalStackTestV3() {
+        MultiTree<String> multiTree = getMultiTreeL2();
+        assertEquals(
+                List.of("nodeA: a", "nodeB: b", "nodeD: d", "nodeE: e", "nodeC: c", "nodeF: f", "nodeG: g"),
+                multiTree.preOrderTraversalStack());
+    }
+
+    @Test
     void postOrderTraversalTest2() {
         MultiTree<String> multiTree = getStringMultiTree2();
         assertEquals(
@@ -84,6 +98,28 @@ class MultiTreeTest {
                 multiTree.postOrderTraversal());
     }
 
+
+    private static MultiTree<String> getMultiTreeL1() {
+        MultiTree<String> multiTree = new MultiTree<>();
+        MultiTree.TreeNode<String> nodeB = new MultiTree.TreeNode<>("b", "nodeB", null);
+        MultiTree.TreeNode<String> nodeC = new MultiTree.TreeNode<>("c", "nodeC", null);
+        multiTree.root = new MultiTree.TreeNode<String>("a", "nodeA", List.of(nodeB, nodeC));
+        return multiTree;
+    }
+
+    private static MultiTree<String> getMultiTreeL2() {
+        MultiTree<String> multiTree = new MultiTree<>();
+        MultiTree.TreeNode<String> nodeB = new MultiTree.TreeNode<>("b", "nodeB", null);
+        MultiTree.TreeNode<String> nodeC = new MultiTree.TreeNode<>("c", "nodeC", null);
+        MultiTree.TreeNode<String> nodeD = new MultiTree.TreeNode<>("d", "nodeD", null);
+        MultiTree.TreeNode<String> nodeE = new MultiTree.TreeNode<>("e", "nodeE", null);
+        MultiTree.TreeNode<String> nodeF = new MultiTree.TreeNode<>("f", "nodeF", null);
+        MultiTree.TreeNode<String> nodeG = new MultiTree.TreeNode<>("g", "nodeG", null);
+        nodeB.children = List.of(nodeD, nodeE);
+        nodeC.children = List.of(nodeF, nodeG);
+        multiTree.root = new MultiTree.TreeNode<String>("a", "nodeA", List.of(nodeB, nodeC));
+        return multiTree;
+    }
 
     private static MultiTree<String> getStringMultiTree() {
         MultiTree<String> multiTree = new MultiTree<>();

@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class MultiTree<T> {
 
@@ -14,10 +15,23 @@ public class MultiTree<T> {
     public List<String> postOrderTraversal() {
         return new ArrayList<>(root.postOrderTraversal());
     }
-
     public List<String> preOrderTraversalStack() {
+        List<String> output = new ArrayList<>();
+        Stack<List<TreeNode<T>>> stack = new Stack<>();
+//        output.add(root.visit());
+//        stack.push(new ArrayList<>(root.children));
+        stack.push(new ArrayList<>(List.of(root)));
+        while (!stack.isEmpty()) {
+            boolean moreChildren = false;
+            TreeNode<T> node = stack.peek().getFirst();
+                output.add(node.visit());
+                stack.peek().removeFirst();
+                if (node.children == null) {
+                    stack.pop();
+                }
 
-        return new ArrayList<>(root.preOrderTraversal());
+        }
+        return output;
     }
 
     static class TreeNode<U> {
@@ -46,6 +60,16 @@ public class MultiTree<T> {
             return output;
         }
 
+
+        public class TreeNodeVisit<T> {
+            TreeNode<T> treeNode;
+            boolean childrenPushed;
+
+            public TreeNodeVisit(TreeNode treeNode, boolean childrenPushed) {
+                this.treeNode = treeNode;
+                this.childrenPushed = childrenPushed;
+            }
+        }
         public List<String> postOrderTraversal() {
             List<String> output = new ArrayList<>();
             if (children != null) {
