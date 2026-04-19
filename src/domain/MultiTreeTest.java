@@ -101,20 +101,20 @@ class MultiTreeTest {
 
     private static MultiTree<String> getMultiTreeL1() {
         MultiTree<String> multiTree = new MultiTree<>();
-        MultiTree.TreeNode<String> nodeB = new MultiTree.TreeNode<>("b", "nodeB", null);
-        MultiTree.TreeNode<String> nodeC = new MultiTree.TreeNode<>("c", "nodeC", null);
+        MultiTree.TreeNode<String> nodeB = new MultiTree.TreeNode<>("b", "nodeB", emptyList());
+        MultiTree.TreeNode<String> nodeC = new MultiTree.TreeNode<>("c", "nodeC", emptyList());
         multiTree.root = new MultiTree.TreeNode<String>("a", "nodeA", List.of(nodeB, nodeC));
         return multiTree;
     }
 
     private static MultiTree<String> getMultiTreeL2() {
         MultiTree<String> multiTree = new MultiTree<>();
-        MultiTree.TreeNode<String> nodeB = new MultiTree.TreeNode<>("b", "nodeB", null);
-        MultiTree.TreeNode<String> nodeC = new MultiTree.TreeNode<>("c", "nodeC", null);
-        MultiTree.TreeNode<String> nodeD = new MultiTree.TreeNode<>("d", "nodeD", null);
-        MultiTree.TreeNode<String> nodeE = new MultiTree.TreeNode<>("e", "nodeE", null);
-        MultiTree.TreeNode<String> nodeF = new MultiTree.TreeNode<>("f", "nodeF", null);
-        MultiTree.TreeNode<String> nodeG = new MultiTree.TreeNode<>("g", "nodeG", null);
+        MultiTree.TreeNode<String> nodeB = new MultiTree.TreeNode<>("b", "nodeB", emptyList());
+        MultiTree.TreeNode<String> nodeC = new MultiTree.TreeNode<>("c", "nodeC", emptyList());
+        MultiTree.TreeNode<String> nodeD = new MultiTree.TreeNode<>("d", "nodeD", emptyList());
+        MultiTree.TreeNode<String> nodeE = new MultiTree.TreeNode<>("e", "nodeE", emptyList());
+        MultiTree.TreeNode<String> nodeF = new MultiTree.TreeNode<>("f", "nodeF", emptyList());
+        MultiTree.TreeNode<String> nodeG = new MultiTree.TreeNode<>("g", "nodeG", emptyList());
         nodeB.children = List.of(nodeD, nodeE);
         nodeC.children = List.of(nodeF, nodeG);
         multiTree.root = new MultiTree.TreeNode<String>("a", "nodeA", List.of(nodeB, nodeC));
@@ -123,20 +123,20 @@ class MultiTreeTest {
 
     private static MultiTree<String> getStringMultiTree() {
         MultiTree<String> multiTree = new MultiTree<>();
-        MultiTree.TreeNode<String> nodeB = new MultiTree.TreeNode<>("b", "nodeB", null);
-        MultiTree.TreeNode<String> nodeC = new MultiTree.TreeNode<>("c", "nodeC", null);
-        MultiTree.TreeNode<String> nodeD = new MultiTree.TreeNode<>("d", "nodeD", null);
-        MultiTree.TreeNode<String> nodeE = new MultiTree.TreeNode<>("e", "nodeE", null);
-        MultiTree.TreeNode<String> nodeF = new MultiTree.TreeNode<>("f", "nodeF", null);
-        MultiTree.TreeNode<String> nodeG = new MultiTree.TreeNode<>("g", "nodeG", null);
-        MultiTree.TreeNode<String> nodeH = new MultiTree.TreeNode<>("h", "nodeH", null);
-        MultiTree.TreeNode<String> nodeI = new MultiTree.TreeNode<>("i", "nodeI", null);
-        MultiTree.TreeNode<String> nodeJ = new MultiTree.TreeNode<>("j", "nodeJ", null);
-        MultiTree.TreeNode<String> nodeK = new MultiTree.TreeNode<>("k", "nodeK", null);
-        MultiTree.TreeNode<String> nodeL = new MultiTree.TreeNode<>("l", "nodeL", null);
-        MultiTree.TreeNode<String> nodeM = new MultiTree.TreeNode<>("m", "nodeM", null);
-        MultiTree.TreeNode<String> nodeN = new MultiTree.TreeNode<>("n", "nodeN", null);
-        MultiTree.TreeNode<String> nodeO = new MultiTree.TreeNode<>("o", "nodeO", null);
+        MultiTree.TreeNode<String> nodeB = new MultiTree.TreeNode<>("b", "nodeB", emptyList());
+        MultiTree.TreeNode<String> nodeC = new MultiTree.TreeNode<>("c", "nodeC", emptyList());
+        MultiTree.TreeNode<String> nodeD = new MultiTree.TreeNode<>("d", "nodeD", emptyList());
+        MultiTree.TreeNode<String> nodeE = new MultiTree.TreeNode<>("e", "nodeE", emptyList());
+        MultiTree.TreeNode<String> nodeF = new MultiTree.TreeNode<>("f", "nodeF", emptyList());
+        MultiTree.TreeNode<String> nodeG = new MultiTree.TreeNode<>("g", "nodeG", emptyList());
+        MultiTree.TreeNode<String> nodeH = new MultiTree.TreeNode<>("h", "nodeH", emptyList());
+        MultiTree.TreeNode<String> nodeI = new MultiTree.TreeNode<>("i", "nodeI", emptyList());
+        MultiTree.TreeNode<String> nodeJ = new MultiTree.TreeNode<>("j", "nodeJ", emptyList());
+        MultiTree.TreeNode<String> nodeK = new MultiTree.TreeNode<>("k", "nodeK", emptyList());
+        MultiTree.TreeNode<String> nodeL = new MultiTree.TreeNode<>("l", "nodeL", emptyList());
+        MultiTree.TreeNode<String> nodeM = new MultiTree.TreeNode<>("m", "nodeM", emptyList());
+        MultiTree.TreeNode<String> nodeN = new MultiTree.TreeNode<>("n", "nodeN", emptyList());
+        MultiTree.TreeNode<String> nodeO = new MultiTree.TreeNode<>("o", "nodeO", emptyList());
         nodeB.children = List.of(nodeD, nodeE);
         nodeC.children = List.of(nodeF, nodeG);
         nodeD.children = List.of(nodeH, nodeI);

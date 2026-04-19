@@ -15,21 +15,20 @@ public class MultiTree<T> {
     public List<String> postOrderTraversal() {
         return new ArrayList<>(root.postOrderTraversal());
     }
+
     public List<String> preOrderTraversalStack() {
         List<String> output = new ArrayList<>();
         Stack<List<TreeNode<T>>> stack = new Stack<>();
-//        output.add(root.visit());
-//        stack.push(new ArrayList<>(root.children));
         stack.push(new ArrayList<>(List.of(root)));
         while (!stack.isEmpty()) {
-            boolean moreChildren = false;
-            TreeNode<T> node = stack.peek().getFirst();
+            if (stack.peek().isEmpty()) {
+                stack.pop();
+            } else {
+                TreeNode<T> node = stack.peek().getFirst();
                 output.add(node.visit());
                 stack.peek().removeFirst();
-                if (node.children == null) {
-                    stack.pop();
-                }
-
+                stack.push(new ArrayList<>(node.children));
+            }
         }
         return output;
     }
@@ -53,7 +52,7 @@ public class MultiTree<T> {
             List<String> output = new ArrayList<>();
             output.add(this.visit());
             if (children != null) {
-                for (TreeNode<U> treeNode: children) {
+                for (TreeNode<U> treeNode : children) {
                     output.addAll(treeNode.preOrderTraversal());
                 }
             }
@@ -70,10 +69,11 @@ public class MultiTree<T> {
                 this.childrenPushed = childrenPushed;
             }
         }
+
         public List<String> postOrderTraversal() {
             List<String> output = new ArrayList<>();
             if (children != null) {
-                for (TreeNode<U> treeNode: children) {
+                for (TreeNode<U> treeNode : children) {
                     output.addAll(treeNode.postOrderTraversal());
                 }
             }
