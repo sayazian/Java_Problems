@@ -3,6 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
+import java.util.function.Predicate;
 
 public class MultiTree<T> {
 
@@ -33,6 +34,14 @@ public class MultiTree<T> {
         return output;
     }
 
+//    Implement depth first search and breadth first search
+//    They should take a Predicate<T> and for the first node where the predicate returns true, return node.visit
+//    Do a preorderTraversal. At each step test node.value with the predicate. The first time it returns true, return node.visit.
+
+    public String depthFirstSearch(Predicate<T> predicate) {
+        return root.depthFirstSearch(predicate);
+    }
+
     static class TreeNode<U> {
         U value;
         String name;
@@ -41,6 +50,9 @@ public class MultiTree<T> {
         public TreeNode(U value, String name, List<TreeNode<U>> children) {
             this.value = value;
             this.name = name;
+            if (children == null) {
+                throw new IllegalArgumentException("children is null");
+            }
             this.children = children;
         }
 
@@ -51,10 +63,8 @@ public class MultiTree<T> {
         public List<String> preOrderTraversal() {
             List<String> output = new ArrayList<>();
             output.add(this.visit());
-            if (children != null) {
-                for (TreeNode<U> treeNode : children) {
-                    output.addAll(treeNode.preOrderTraversal());
-                }
+            for (TreeNode<U> treeNode : children) {
+                output.addAll(treeNode.preOrderTraversal());
             }
             return output;
         }
@@ -79,6 +89,19 @@ public class MultiTree<T> {
             }
             output.add(this.visit());
             return output;
+        }
+
+        public String depthFirstSearch(Predicate<U> predicate) {
+            if (predicate.test(value)) {
+                return visit();
+            }
+            for (TreeNode<U> treeNode : children) {
+                String result = treeNode.depthFirstSearch(predicate);
+                if (result != null) {
+                    return result;
+                }
+            }
+            return null;
         }
 
         public U getValue() {
