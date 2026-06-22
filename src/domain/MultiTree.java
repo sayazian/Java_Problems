@@ -42,6 +42,12 @@ public class MultiTree<T> {
         return root.depthFirstSearch(predicate);
     }
 
+//    Implement breadth first search using queues
+    public String breadthFirstSearch(Predicate<T> predicate) {
+        return root.breadthFirstSearch(predicate);
+    }
+
+
     static class TreeNode<U> {
         U value;
         String name;
@@ -69,17 +75,6 @@ public class MultiTree<T> {
             return output;
         }
 
-
-        public class TreeNodeVisit<T> {
-            TreeNode<T> treeNode;
-            boolean childrenPushed;
-
-            public TreeNodeVisit(TreeNode treeNode, boolean childrenPushed) {
-                this.treeNode = treeNode;
-                this.childrenPushed = childrenPushed;
-            }
-        }
-
         public List<String> postOrderTraversal() {
             List<String> output = new ArrayList<>();
             if (children != null) {
@@ -101,6 +96,19 @@ public class MultiTree<T> {
                     return result;
                 }
             }
+            return null;
+        }
+
+        public String breadthFirstSearch(Predicate<U> predicate) {
+//            for (TreeNode<U> treeNode : children) {
+//                String result = treeNode.breadthFirstSearch(predicate);
+//                if (result != null) {
+//                    return result;
+//                }
+//            }
+//            if (predicate.test(value)) {
+//                return visit();
+//            }
             return null;
         }
 

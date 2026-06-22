@@ -135,6 +135,44 @@ class MultiTreeTest {
         assertNull(multiTree.depthFirstSearch(s -> s.equals("7")));
     }
 
+    @Test
+    void breadthFirstSearchTestL1() {
+        MultiTree<String> multiTree = getMultiTreeL1();
+        Predicate<String> containsA = new Predicate<String>() {
+            @Override
+            public boolean test(String s) {
+                return s.contains("a");
+            }
+        };
+        assertEquals("nodeA: a", multiTree.breadthFirstSearch(containsA));
+        Predicate<String> containsB = s -> s.contains("b");
+        assertEquals("nodeB: b", multiTree.breadthFirstSearch(containsB));
+    }
+
+
+    @Test
+    void breadthFirstSearchTestL2() {
+        MultiTree<String> multiTree = getMultiTreeL2();
+        Predicate<String> containsA =s -> s.contains("a");
+        Predicate<String> containsB = s -> s.contains("b");
+        Predicate<String> containsD = s -> s.contains("d");
+        Predicate<String> containsC = s -> s.contains("c");
+        assertEquals("nodeA: a", multiTree.breadthFirstSearch(containsA));
+        assertEquals("nodeB: b", multiTree.breadthFirstSearch(containsB));
+        assertEquals("nodeC: c", multiTree.breadthFirstSearch(containsC));
+        assertEquals("nodeD: d", multiTree.breadthFirstSearch(containsD));
+    }
+
+    @Test
+    void breadthFirstSearchTestL5() {
+        MultiTree<String> multiTree = getMultiTreeL5();
+        assertEquals("node4: 4", multiTree.breadthFirstSearch(s4 -> s4.equals("4")));
+        assertEquals("node30: 30", multiTree.breadthFirstSearch(s3 -> s3.equals("30")));
+        assertEquals("node8V2: 8", multiTree.breadthFirstSearch(s2 -> s2.equals("8")));
+        assertEquals("node11V2: 11", multiTree.breadthFirstSearch(s -> s.equals("11")));
+        assertEquals("node3V2: 3", multiTree.breadthFirstSearch(s1 -> s1.equals("3")));
+        assertNull(multiTree.breadthFirstSearch(s -> s.equals("7")));
+    }
 
     private static MultiTree<String> getMultiTreeL1() {
         MultiTree<String> multiTree = new MultiTree<>();
