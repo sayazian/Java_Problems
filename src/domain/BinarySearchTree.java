@@ -1,5 +1,7 @@
 package domain;
 
+import com.sun.source.tree.Tree;
+
 public class BinarySearchTree<T extends Comparable<T>> {
     TreeNode<T> root;
 
@@ -97,6 +99,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
         U value;
         TreeNode<U> left;
         TreeNode<U> right;
+
+        public TreeNode() {
+            new TreeNode(null);
+        }
 
         public TreeNode(U value) {
             this.value = value;

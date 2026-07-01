@@ -4,13 +4,16 @@ import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class QueueTest {
+class CircularQueueTest {
 
     @Test
     void enqueue() {
-        Queue<Integer> q = Framework.queueLengthZero();
+        CircularQueue<Integer> q = Framework.queueLengthZero();
         assertThrows(NoSuchElementException.class, q::dequeue);
         q.enqueue(1);
         assertEquals(1, q.peek());
@@ -20,38 +23,32 @@ class QueueTest {
 
     @Test
     void dequeue0() {
-        Queue<Integer> q = Framework.queueLengthZero();
-        assertThrows(NoSuchElementException.class, () -> q.dequeue());
+        CircularQueue<Integer> q = Framework.queueLengthZero();
+        assertThrows(NoSuchElementException.class, q::dequeue);
     }
 
     @Test
     void dequeue1() {
-        Queue<Integer> q = Framework.queueLengthOne();
+        CircularQueue<Integer> q = Framework.queueLengthOne();
         assertEquals(1, q.dequeue());
-        assertThrows(NoSuchElementException.class, () -> {
-            q.peek();
-        });
+        assertThrows(NoSuchElementException.class, q::peek);
         assertTrue(q.isEmpty());
     }
 
     @Test
     void dequeue2() {
-        Queue<Integer> q = Framework.queueLengthTwo();
+        CircularQueue<Integer> q = Framework.queueLengthTwo();
         assertEquals(1, q.dequeue());
         assertEquals(2, q.peek());
         assertEquals(2, q.dequeue());
-        assertThrows(NoSuchElementException.class, () -> {
-            q.peek();
-        });
-        assertThrows(NoSuchElementException.class, () -> {
-            q.dequeue();
-        });
+        assertThrows(NoSuchElementException.class, q::dequeue);
+        assertThrows(NoSuchElementException.class, q::dequeue);
         assertTrue(q.isEmpty());
     }
 
     @Test
     void dequeue3() {
-        Queue<Integer> q = Framework.queueLengthThree();
+        CircularQueue<Integer> q = Framework.queueLengthThree();
         q.enqueue(4);
         q.enqueue(5);
         q.enqueue(6);
@@ -74,7 +71,7 @@ class QueueTest {
 
     @Test
     void dequeue4() {
-        Queue<Integer> q = Framework.queueLengthZero();
+        CircularQueue<Integer> q = Framework.queueLengthZero();
         q.enqueue(1);
         q.enqueue(2);
         q.dequeue();
@@ -89,37 +86,37 @@ class QueueTest {
 
     @Test
     void testPeek0() {
-        Queue<Integer> q = Framework.queueLengthZero();
+        CircularQueue<Integer> q = Framework.queueLengthZero();
         assertThrows(NoSuchElementException.class, q::peek);
     }
 
     @Test
     void testPeek1() {
-        Queue<Integer> q = Framework.queueLengthOne();
+        CircularQueue<Integer> q = Framework.queueLengthOne();
         assertEquals(1, q.peek());
     }
 
     @Test
     void testPeek2() {
-        Queue<Integer> q = Framework.queueLengthTwo();
+        CircularQueue<Integer> q = Framework.queueLengthTwo();
         assertEquals(1, q.peek());
     }
 
     @Test
     void testIsEmpty0() {
-        Queue<Integer> q = Framework.queueLengthZero();
+        CircularQueue<Integer> q = Framework.queueLengthZero();
         assertTrue(q.isEmpty());
     }
 
     @Test
     void testIsEmpty1() {
-        Queue<Integer> q = Framework.queueLengthOne();
+        CircularQueue<Integer> q = Framework.queueLengthOne();
         assertFalse(q.isEmpty());
     }
 
     @Test
     void cycleTest() {
-        Queue<Integer> q = Framework.queueLengthThree();
+        CircularQueue<Integer> q = Framework.queueLengthThree();
         assertEquals(1, q.peek());
         assertEquals(1, q.dequeue());
         assertEquals(2, q.peek());
@@ -150,25 +147,25 @@ class QueueTest {
     }
 
     static class Framework {
-        static Queue<Integer> queueLengthZero() {
-            return new Queue<>();
+        static CircularQueue<Integer> queueLengthZero() {
+            return new CircularQueue<>();
         }
 
-        static Queue<Integer> queueLengthOne() {
-            Queue<Integer> q = new Queue<>();
+        static CircularQueue<Integer> queueLengthOne() {
+            CircularQueue<Integer> q = new CircularQueue<>();
             q.enqueue(1);
             return q;
         }
 
-        static Queue<Integer> queueLengthTwo() {
-            Queue<Integer> q = new Queue<>();
+        static CircularQueue<Integer> queueLengthTwo() {
+            CircularQueue<Integer> q = new CircularQueue<>();
             q.enqueue(1);
             q.enqueue(2);
             return q;
         }
 
-        static Queue<Integer> queueLengthThree() {
-            Queue<Integer> q = new Queue<>();
+        static CircularQueue<Integer> queueLengthThree() {
+            CircularQueue<Integer> q = new CircularQueue<>();
             q.enqueue(1);
             q.enqueue(2);
             q.enqueue(3);
